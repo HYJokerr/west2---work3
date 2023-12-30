@@ -18,7 +18,7 @@ public class JDBCTools {
 
             //定义sql
             String sql1 = "insert into t_goods(`id`,`name`,`price`) values (?,?,?)";
-            String sql2 = "select id from t_goods";
+            String sql2 = "select id,name from t_goods";
 
             //获取PreparedStatement对象
             ps1 = conn.prepareStatement(sql1);
@@ -34,6 +34,10 @@ public class JDBCTools {
             while(rs1.next()) {
                 if (rs1.getInt("id") == goods.getId()){
                     System.out.println("添加的商品id已存在!");
+                    throw new Exception();
+                }
+                if(rs1.getString("name").equals(goods.getName())){
+                    System.out.println("添加的商品名字重复!");
                     throw new Exception();
                 }
             }
@@ -267,7 +271,7 @@ public class JDBCTools {
             conn.commit();
 
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             //回滚事务
             conn.rollback();
             e.printStackTrace();
@@ -311,7 +315,7 @@ public class JDBCTools {
             //提交事物
             conn.commit();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             //回滚事务
             conn.rollback();
             e.printStackTrace();

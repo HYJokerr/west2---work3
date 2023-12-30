@@ -5,8 +5,9 @@ public class Test {
     public static void main(String[] args) throws Exception{
         Goods goods1 = new Goods(1,"Apple",10);
         Goods goods2 = new Goods(2,"Orange",5);
-        Goods goods3 = new Goods(3,"ApplePan",5);
+        Goods goods3 = new Goods(1,"ApplePan",5);
         Goods goods4 = new Goods(1,"Apple",11);
+        Goods goods5 = new Goods(3,"Apple",10);
 
         Order order1 = new Order(1,1,10, new Timestamp(System.currentTimeMillis()),100.);
         Order order2 = new Order(2,10,10, new Timestamp(System.currentTimeMillis()),100.);
@@ -23,6 +24,8 @@ public class Test {
         //JDBCTools.goodsInsert(goods2);
         // id重复的商品goods3添加失败
         //JDBCTools.goodsInsert(goods3);
+        //名字重复的商品goods5添加失败
+        //JDBCTools.goodsInsert(goods5);
 
         // 添加订单order1,order5
         //JDBCTools.orderInsert(order1);
